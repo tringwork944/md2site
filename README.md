@@ -78,7 +78,9 @@ website-01/
 - Thêm giai đoạn bằng cách tạo file trong `pages/data/vi/roadmap/` và thêm tên file vào `pages/data/vi/roadmap/index.md`.
 - Trong `div-basic-03`, thuộc tính `icon:` của mỗi mục `###` hỗ trợ `document`, `book`, `trend` và `list`.
 
-Website cần được mở qua HTTP/hosting tĩnh để trình duyệt tải được các file Markdown.
+Website cần được mở qua HTTP/hosting tĩnh để trình duyệt tải được các file Markdown. Trên HTTPS (hoặc localhost), Service Worker tự động lưu app shell, CSS, JavaScript, ảnh và Markdown đã truy cập vào Cache Storage. Từ lần truy cập sau, tài nguyên tĩnh và nội dung được trả ngay từ cache rồi cập nhật ngầm; điều hướng HTML vẫn ưu tiên mạng và dùng bản đã lưu khi ngoại tuyến.
+
+Khi triển khai thay đổi cho `service-worker.js` hoặc danh sách app shell, tăng `CACHE_VERSION` trong file đó. Service Worker mới sẽ dọn các cache `md2site-*` của phiên bản cũ sau khi kích hoạt. Không cache file tải xuống hoặc request ngoài domain.
 
 ## Triển khai
 
@@ -110,7 +112,7 @@ Với Nginx, dùng mẫu `deploy/nginx.conf`, sửa `server_name` và `root`, sa
 
 ## Kiểm tra và đóng gói bản phát hành
 
-Luồng chạy dùng `assets/js/content-runtime.js` để tải và cache Markdown cùng manifest trong một lần mở trang. Request lỗi không được cache; request quá 15 giây được hủy để có thể báo lỗi hoặc fallback. Router tải đồng thời các nhóm tài nguyên độc lập, nhưng chờ template, shell và stylesheet sẵn sàng trước khi chạy app.
+Luồng chạy dùng `assets/js/content-runtime.js` để chống tải lặp Markdown cùng manifest trong một lần mở trang. Service Worker giữ tài nguyên hợp lệ giữa các phiên truy cập bằng Cache Storage; request lỗi không được cache và request quá 15 giây được hủy để có thể báo lỗi hoặc fallback. Router tải đồng thời các nhóm tài nguyên độc lập, nhưng chờ template, shell và stylesheet sẵn sàng trước khi chạy app.
 
 `assets/js/collection-loader.js` chỉ được tải ở trang dùng danh sách bài viết hoặc roadmap. Bộ điều khiển tải tối đa 4 mục mỗi đợt, gộp thao tác tải đồng thời và dừng tự tải khi lỗi; nút tải thêm cho phép thử lại đúng đợt đang lỗi. Nhiều khối danh sách trên cùng trang được khởi tạo riêng. Liên kết neo được chuẩn hóa tại các bước render thay vì theo dõi mọi thay đổi DOM.
 

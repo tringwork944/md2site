@@ -9,4 +9,12 @@ ErrorDocument 404 /404.html
   <FilesMatch "\.(html|md)$">
     Header set Cache-Control "no-cache"
   </FilesMatch>
+
+  <FilesMatch "\.(css|js|svg|png|jpe?g|webp|woff2?)$">
+    Header set Cache-Control "public, max-age=86400, stale-while-revalidate=604800"
+  </FilesMatch>
+
+  <Files "service-worker.js">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+  </Files>
 </IfModule>

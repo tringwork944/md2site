@@ -10,7 +10,7 @@
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 15000);
     try {
-      const response = await fetch(url, { cache: 'no-cache', signal: controller.signal });
+      const response = await fetch(url, { cache: 'default', signal: controller.signal });
       if (!response.ok) throw new Error(`Content unavailable (${response.status}): ${url}`);
       const text = await response.text();
       if (/\btext\/html\b/i.test(response.headers.get('content-type') || '') || /^\s*(?:<!doctype\s+html|<html\b)/i.test(text)) {
