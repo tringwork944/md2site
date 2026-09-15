@@ -1,0 +1,163 @@
+.body-template {
+  display: block;
+  min-height: 1px;
+}
+
+.body-basic-01 {
+  --template-border-width: .5px;
+  --template-frame-border-width: 1px;
+  --template-dashed-border: color-mix(in srgb, var(--line) 58%, transparent);
+  --template-horizontal-border: color-mix(in srgb, var(--line) 82%, transparent);
+  --template-frame-border: var(--line-strong);
+  --template-control-border: var(--line-strong);
+  --template-panel-background: transparent;
+  --template-panel-backdrop: blur(18px);
+  --template-section-space: clamp(52px, 6vw, 88px);
+  --template-section-space-sm: clamp(36px, 4.5vw, 64px);
+}
+
+html[data-theme="light"] .body-basic-01 {
+  --template-dashed-border: color-mix(in srgb, #a8a8a8 56%, transparent);
+  --template-horizontal-border: color-mix(in srgb, #b0b0b0 72%, transparent);
+  --template-frame-border: #adadad;
+  --template-control-border: #737373;
+  --template-panel-backdrop: blur(18px) brightness(1.03) contrast(.98);
+}
+
+html[data-theme="dark"] .body-basic-01 {
+  --template-dashed-border: color-mix(in srgb, #6b6b6b 48%, transparent);
+  --template-horizontal-border: color-mix(in srgb, #666666 64%, transparent);
+  --template-frame-border: #505050;
+  --template-control-border: #777777;
+  --template-panel-backdrop: blur(18px) brightness(.92) contrast(1.04);
+}
+
+.body-basic-01 .template-div.section {
+  padding-block: var(--template-section-space);
+}
+
+.body-basic-01 .template-div.section-sm,
+.body-basic-01 .template-div.callout-section {
+  padding-block: var(--template-section-space-sm);
+}
+
+.body-basic-01 .template-div :where(p, li, dd) {
+  overflow-wrap: anywhere;
+}
+
+/* Only structural vertical-divider owners receive dashed borders. */
+.body-basic-01 .template-div :where(
+  .hero-grid > :nth-child(2),
+  .split > :nth-child(2),
+  .contact-grid > :nth-child(2),
+  .feature-row > :nth-child(2),
+  .article-list-item h2,
+  .article-list-item time,
+  .use-item + .use-item,
+  .download-steps li + li,
+  .download-meta
+) {
+  border-left-width: var(--template-border-width);
+  border-left-style: dashed;
+  border-left-color: var(--template-dashed-border);
+}
+
+.body-basic-01 .template-div :where(
+  .roadmap-items::before,
+  .license-content::before
+) {
+  border-left-color: var(--template-dashed-border);
+}
+
+/* Horizontal dividers have exactly one owner to prevent stacked borders. */
+.body-basic-01 .template-div :where(
+  .template-div + .template-div,
+  .phase + .phase,
+  .license-content
+) {
+  border-top-width: var(--template-border-width);
+  border-top-style: solid;
+  border-top-color: var(--template-horizontal-border);
+}
+
+.body-basic-01 .template-div :where(
+  .feature-row,
+  .roadmap-item,
+  .article-list-item,
+  .download-meta > div,
+  .license-content section
+) {
+  border-bottom-width: var(--template-border-width);
+  border-bottom-style: solid;
+  border-bottom-color: var(--template-horizontal-border);
+}
+
+/* Complete enclosing borders stay solid on all four sides. */
+.body-basic-01 .template-div :where(
+  .product-shell,
+  .download-panel,
+  .contact-form,
+  .showcase-photo,
+  .showcase-viewer,
+  .article-page-reader img,
+  .feature-index,
+  .status,
+  .roadmap-item .mark,
+  .btn,
+  input,
+  textarea,
+  dialog
+) {
+  border-width: var(--template-frame-border-width);
+  border-style: solid;
+  border-color: var(--template-frame-border);
+}
+
+/* Interactive boundaries remain visible at a minimum 3:1 against each theme. */
+.body-basic-01 .template-div :where(
+  .btn-secondary,
+  .btn-ghost,
+  .status,
+  .roadmap-item .mark,
+  input,
+  textarea
+) {
+  border-color: var(--template-control-border);
+}
+
+/* Framed content panels share one translucent, blurred backdrop treatment. */
+.body-basic-01 .template-div :where(
+  .callout,
+  .product-shell,
+  .download-panel,
+  .contact-form,
+  .showcase-viewer
+) {
+  background-color: var(--template-panel-background);
+  -webkit-backdrop-filter: var(--template-panel-backdrop);
+  backdrop-filter: var(--template-panel-backdrop);
+  box-shadow: none;
+}
+
+.body-basic-01 .btn-primary {
+  border-color: var(--text);
+}
+
+.body-basic-01 :where(a, button, input, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .body-basic-01 {
+    --template-section-space: 48px;
+    --template-section-space-sm: 32px;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .body-basic-01 {
+    --template-panel-background: var(--surface);
+    --template-panel-backdrop: none;
+  }
+}

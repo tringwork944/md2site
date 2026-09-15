@@ -1,0 +1,6 @@
+/* div-basic-02: numbered list left, copy right. */
+.template-div-basic-02 .feature-list { align-self: stretch; }
+
+@media (max-width: 760px) {
+  .template-div-basic-02 .feature-list { order: 2; }
+}

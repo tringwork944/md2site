@@ -1,0 +1,4 @@
+/* Template styles: page-basic-01 */
+[data-page-templates][aria-busy="true"] {
+  min-height: 45vh;
+}

@@ -1,0 +1,24 @@
+/* div-basic-07: release download panel. */
+.template-div-basic-07 .download-copy,
+.template-div-basic-07 .download-meta { min-width: 0; }
+.template-div-basic-07 .download-actions .btn { text-align: center; }
+.template-div-basic-07 .download-panel {
+  border: var(--template-frame-border-width, 1px) solid var(--template-frame-border, var(--line-strong));
+  background: var(--template-panel-background);
+}
+.template-div-basic-07 .download-meta {
+  border-left: var(--template-border-width, .5px) dashed var(--template-dashed-border, var(--divider-faint));
+}
+.template-div-basic-07 .download-meta > div {
+  border-bottom: var(--template-border-width, .5px) solid var(--template-horizontal-border, var(--line));
+}
+.template-div-basic-07 .download-meta > div:last-child {
+  border-bottom: 0;
+}
+
+@media (max-width: 900px) {
+  .template-div-basic-07 .download-meta {
+    border-top: var(--template-border-width, .5px) solid var(--template-horizontal-border, var(--line));
+    border-left: 0;
+  }
+}

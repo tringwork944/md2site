@@ -1,0 +1,16 @@
+/* div-basic-04: compact callout. */
+.template-div-basic-04 .callout-title { margin-bottom: 6px; }
+.template-div-basic-04 .btn { flex: 0 0 auto; }
+.template-div-basic-04 .callout {
+  border: 0;
+  border-radius: 0;
+  background: var(--template-panel-background);
+}
+
+html[data-theme="dark"] .template-div-basic-04 .callout p {
+  color: color-mix(in srgb, var(--text) 72%, transparent);
+}
+
+@media (max-width: 760px) {
+  .template-div-basic-04 .callout { align-items: stretch; }
+}

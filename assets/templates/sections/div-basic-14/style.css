@@ -1,0 +1,59 @@
+/* div-basic-14: reusable error page state. */
+.template-div-basic-14 {
+  display: grid;
+  place-items: center;
+  min-height: calc(100vh - 72px);
+  min-height: calc(100dvh - 72px);
+}
+
+.template-div-basic-14 .error-state {
+  display: grid;
+  justify-items: center;
+  width: var(--page-rail-width);
+  max-width: var(--max);
+  margin-inline: auto;
+  padding: 24px var(--container-gutter);
+  text-align: center;
+}
+
+.template-div-basic-14 .error-state > .eyebrow {
+  order: -1;
+  margin-bottom: clamp(20px, 2.5vw, 36px);
+}
+
+.template-div-basic-14 .error-code {
+  margin-bottom: 20px;
+  color: color-mix(in srgb, var(--text) 12%, transparent);
+  font-size: clamp(112px, 20vw, 280px);
+  font-weight: 800;
+  letter-spacing: -.09em;
+  line-height: .72;
+  user-select: none;
+}
+
+.template-div-basic-14 :where(.title-xl, .lead) {
+  max-width: 900px;
+}
+
+.template-div-basic-14 .hero-actions {
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.template-div-basic-14 .error-note {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+@media (max-width: 760px) {
+  .template-div-basic-14 {
+    min-height: calc(100vh - 56px);
+    min-height: calc(100dvh - 56px);
+  }
+
+  .template-div-basic-14 .error-state {
+    width: calc(100% - 20px);
+    padding: 16px var(--container-gutter);
+  }
+}

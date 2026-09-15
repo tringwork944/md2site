@@ -1,0 +1,32 @@
+/* div-basic-03: responsive content-card grid. */
+.template-div-basic-03 .use-grid:empty { display: none; }
+
+.template-div-basic-03 .use-grid,
+.template-div-basic-03 .use-item {
+  border: 0;
+}
+
+.template-div-basic-03 .use-item {
+  background: transparent;
+}
+
+.template-div-basic-03 .use-item + .use-item {
+  border-left: var(--template-border-width, .5px) dashed var(--template-dashed-border, var(--rail-dashed));
+}
+
+@media (max-width: 980px) {
+  .template-div-basic-03 .use-item + .use-item { border-left: 0; }
+  .template-div-basic-03 .use-item:nth-child(even) {
+    border-left: var(--template-border-width, .5px) dashed var(--template-dashed-border, var(--rail-dashed));
+  }
+  .template-div-basic-03 .use-item:nth-child(n + 3) {
+    border-top: var(--template-border-width, .5px) solid var(--template-horizontal-border, var(--line));
+  }
+}
+
+@media (max-width: 760px) {
+  .template-div-basic-03 .use-item:nth-child(even) { border-left: 0; }
+  .template-div-basic-03 .use-item:nth-child(n + 2) {
+    border-top: var(--template-border-width, .5px) solid var(--template-horizontal-border, var(--line));
+  }
+}

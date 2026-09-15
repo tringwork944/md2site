@@ -1,0 +1,13 @@
+.template-div-basic-11 { min-height: 70vh; }
+
+.template-div-basic-11 .article-page-wrap {
+  padding-top: 72px;
+  padding-bottom: 96px;
+}
+
+@media (max-width: 760px) {
+  .template-div-basic-11 .article-page-wrap {
+    padding-top: 48px;
+    padding-bottom: 64px;
+  }
+}

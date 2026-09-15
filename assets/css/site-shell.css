@@ -1,0 +1,53 @@
+:root,
+html[data-theme="light"] {
+  --bg: #f7f7f7;
+  --surface: #ffffff;
+  --surface-2: #efefef;
+}
+
+html[data-theme="dark"] {
+  --bg: #0b0b0b;
+  --surface: #111111;
+  --surface-2: #181818;
+}
+
+body { background-color: var(--bg); }
+
+.site-background {
+  position: fixed;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  width: min(92vmax, 1500px);
+  aspect-ratio: 1;
+  pointer-events: none;
+  background: url("../images/background/dong-son-background.svg") center / contain no-repeat;
+  opacity: .045;
+  filter: grayscale(1) contrast(.72) blur(3px);
+  transform: translate(-50%, -50%) rotate(0deg);
+  transform-origin: center;
+  animation: dong-son-rotate 120s linear var(--dong-son-delay, 0ms) infinite;
+  will-change: transform;
+}
+
+/* Keep content above the earlier background node without isolating its backdrop. */
+body > main,
+body > .site-footer { position: relative; z-index: auto; }
+
+html[data-theme="dark"] .site-background {
+  opacity: .07;
+  filter: grayscale(1) invert(1) contrast(.62) blur(3px);
+}
+
+@keyframes dong-son-rotate {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-background { animation: none; }
+}
+
+@media (max-width: 760px) {
+  .site-background { width: 118vmax; opacity: .035; filter: grayscale(1) contrast(.7) blur(2px); }
+  html[data-theme="dark"] .site-background { opacity: .055; }
+}

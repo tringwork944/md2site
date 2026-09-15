@@ -1,0 +1,8 @@
+/* div-basic-09: contact details and form. */
+.template-div-basic-09 .contact-form-slot,
+.template-div-basic-09 .field { min-width: 0; }
+.template-div-basic-09 input,
+.template-div-basic-09 textarea { max-width: 100%; }
+.template-div-basic-09 .contact-form {
+  background: var(--template-panel-background);
+}

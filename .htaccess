@@ -1,0 +1,12 @@
+DirectoryIndex index.html
+AddDefaultCharset UTF-8
+AddType text/markdown .md
+
+# Preserve the 404 status for missing Markdown, scripts and images as well.
+ErrorDocument 404 /404.html
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|md)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
